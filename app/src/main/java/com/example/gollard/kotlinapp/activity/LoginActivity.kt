@@ -1,9 +1,10 @@
 package com.example.gollard.kotlinapp.activity
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.PersistableBundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
@@ -26,12 +27,11 @@ class LoginActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         Log.d("LOGIN", "LOGIN")
-        checkIsLogined()
         button.setOnClickListener { VKSdk.login(this) }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val callback =object: VKCallback<VKAccessToken> {
+        val callback = object: VKCallback<VKAccessToken> {
             override fun onResult(res: VKAccessToken?) {
                 val intent = Intent(baseContext, MainActivity::class.java)
                 val prefs = PreferencesHelper.defaultPreferences(applicationContext)
@@ -51,10 +51,4 @@ class LoginActivity: AppCompatActivity() {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
     }
 
-    fun checkIsLogined() {
-        val prefs: SharedPreferences = PreferencesHelper.defaultPreferences(this)
-        val token: String? = prefs[Constants.VK_TOKEN]
-        if (token != null)
-            startActivity(Intent(this, MainActivity::class.java))
-    }
 }

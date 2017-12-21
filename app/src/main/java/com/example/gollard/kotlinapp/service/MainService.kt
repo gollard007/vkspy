@@ -2,6 +2,7 @@ package com.example.gollard.kotlinapp.service
 
 import android.app.Service
 import android.content.Intent
+import android.os.Handler
 import android.os.IBinder
 import android.util.Log
 import java.util.*
@@ -10,6 +11,9 @@ import java.util.*
  * Created by gollard on 13.12.17.
  */
 class MainService : Service() {
+
+    val handler = Handler()
+
     override fun onBind(intent: Intent?): IBinder {
         TODO("not implemented")
     }

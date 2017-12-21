@@ -7,6 +7,8 @@ import android.preference.PreferenceManager
 /**
  * Created by gollard on 15.12.17.
  */
+
+
 object PreferencesHelper {
     fun defaultPreferences(context: Context): SharedPreferences =
             PreferenceManager.getDefaultSharedPreferences(context)
